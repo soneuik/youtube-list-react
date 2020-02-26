@@ -1,5 +1,5 @@
 {
-  "homepage": "https://soneuik.github.io/youtube-list-react/",
+  "homepage": "https://soneuik.github.io",
   "name": "redux-simple-starter",
   "version": "1.0.0",
   "description": "Simple starter package for Redux with React and Babel support",
@@ -10,7 +10,7 @@
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "build": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
-    "predeploy":"npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "author": "",
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "babel-preset-stage-1": "^6.1.18",
+    "gh-pages": "^2.2.0",
     "lodash": "^3.10.1",
     "react": "16.3.2",
     "react-dom": "16.3.2",
