@@ -6,19 +6,16 @@ const VideoList = (props) =>{
         //component안에 유니크한 key값을 설정해줘야한다.
         return (
             <VideoListItem
-            onVideoClick={props.onVideoSelect}
+            onVideoSelect={props.onVideoSelect}
             key={video.etag}
-            video={video}
-            
-            />
-            
+            video={video} 
+            /> 
         );
         
     });
-
-
+ 
     return(
-        <ul className="col-md4 list-group">
+        <ul className="col-md-4 list-group">
             {/* //for loop는 되도록 쓰지말고, Map을 쓰기.
                 var array = [1,2,3];
                 array.map(function(number){

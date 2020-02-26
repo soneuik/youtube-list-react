@@ -26,14 +26,14 @@ class SearchBar extends Component {
     //render 함수 
     render() {
         return (
-            <div>
+            <div className="search-bar">
                 {/* onChange 통해서 state의 term이 업데이트 되고, 그럼 value에서 state의 term을 가져와서 업데이트한다
                 1.onChange
                 2.setState()
                 3.value = this.state.term */}
                 <input 
                 value={this.state.term}
-                onChange={event => this.setState({ term: event.target.value}) } />
+                onChange={event => this.onInputChange(event.target.value) } />
                 {/* Value of the input: {this.state.term} */}
             </div> 
         );
@@ -44,6 +44,11 @@ class SearchBar extends Component {
     // onInputChange(event){
         // console.log(event.target.value);
     // }
+  
+    onInputChange(term){
+        this.setState({term});
+        this.props.onSearchTermChange(term); 
+    }
 }
 
 export default SearchBar;

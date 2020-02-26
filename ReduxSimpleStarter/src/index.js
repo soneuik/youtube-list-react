@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 import YTSearch from 'youtube-api-search'
@@ -37,28 +38,35 @@ class App extends Component{
             selectedVideo: null
          };
 
-        //유투브 검색 함수에 api키랑, 검색용어 보내기.  
-        YTSearch ({key: API_KEY, term: 'dog'}, (videos) => {
+        this.videoSearch('검정 말티푸');
+    }
+
+    videoSearch(term){
+         //유투브 검색 함수에 api키랑, 검색용어 보내기. 
+        //동영상 데이터 겟! 
+        YTSearch ({key: API_KEY, term: term}, (videos) => {
             //this.setState({videos: videos}); 키와 변수이름이 같을때 위의 ({videos}); 처럼 표현 가능
             // Ajax로 데이터 보내줄때랑 비슷하게 보면됨.
             this.setState({ 
                 videos:videos,
                 selectedVideo: videos[0]
              });                
-        }); 
+        });  
     }
 
     render(){ 
-        // this.props // 클래스 함수에서 props는 어디서나 불러다 쓸수있다
- 
+        // this.props // 클래스 함수에서 props는 어디서나 불러다 쓸수있다 
+
+
+        const videoSearch=_.debounce((term) => {this.videoSearch(term)}, 300); 
         return(
             <div>
-                <SearchBar /> 
+                <SearchBar onSearchTermChange={videoSearch} /> 
                 <VideoDetail video={this.state.selectedVideo} /> 
                 {/* //props인 videos를 video_list component에 보내는것 */}
                 <VideoList 
-                onVideoSelect = {selectedVideo => this.setState({selectedVideo})}
-                videos={this.state.videos} />
+                    onVideoSelect = {selectedVideo => this.setState({selectedVideo})}
+                    videos={this.state.videos} />
             </div>
         );
     } 
