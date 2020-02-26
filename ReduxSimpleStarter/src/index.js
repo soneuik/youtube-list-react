@@ -28,8 +28,7 @@ const API_KEY ='AIzaSyC8W3ubcRCrLAeYElVmkUM4qmXa0I4Qb3w'
 
 //클래스형 App
 class App extends Component{
-    constructor(props){
-        
+    constructor(props){ 
         super(props); 
 
         //state안에서 videos라는 array정의해주기
@@ -38,9 +37,13 @@ class App extends Component{
             selectedVideo: null
          };
 
+
+         //페이지 로드 되었을때 초기 비디오 검색 키워드.
         this.videoSearch('검정 말티푸');
     }
 
+
+    //term은 유저가 검색하는 키워드
     videoSearch(term){
          //유투브 검색 함수에 api키랑, 검색용어 보내기. 
         //동영상 데이터 겟! 
@@ -58,6 +61,7 @@ class App extends Component{
         // this.props // 클래스 함수에서 props는 어디서나 불러다 쓸수있다 
 
 
+            
         const videoSearch=_.debounce((term) => {this.videoSearch(term)}, 300); 
         return(
             <div>
